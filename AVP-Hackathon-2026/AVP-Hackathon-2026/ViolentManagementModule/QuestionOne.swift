@@ -1,0 +1,18 @@
+//
+//  QuestionOne.swift
+//  AVP-Hackathon-2026
+//
+//  Created by Jessica Amelinda Mang on 23/6/2026.
+//
+
+import SwiftUI
+
+struct QuestionOne: View {
+    var body: some View {
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    }
+}
+
+#Preview {
+    QuestionOne()
+}
