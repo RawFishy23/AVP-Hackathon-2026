@@ -117,72 +117,75 @@ struct TrainingModule: Identifiable, Hashable {
 enum TrainingData {
     static var all: [TrainingModule] = [
         TrainingModule(
-            title: "Cardiac Emergencies",
-            subtitle: "Arrhythmias, MI & CPR",
-            systemImage: "heart.fill",
+            title: "Safety & Clinical Rules",
+            subtitle: "Policies, protocols & safe clinical practice",
+            systemImage: "shield.checkered",
             scenarios: [
                 Scenario(
-                    title: "Ventricular Fibrillation",
-                    description: "Recognise and treat a patient in VF arrest.",
-                    detailDescription: "A 58-year-old male collapses in the ED waiting room. Monitors show coarse VF. Practise rapid rhythm recognition, safe defibrillation technique, and post-ROSC care in this high-fidelity simulation.",
-                    duration: "12 min",
-                    difficulty: .intermediate,
-                    category: "Cardiac",
-                    thumbnailSystemImage: "waveform.path.ecg"
-                ),
-                Scenario(
-                    title: "STEMI Recognition",
-                    description: "12-lead ECG interpretation and rapid cath-lab activation.",
-                    detailDescription: "Review a series of 12-lead ECGs presenting with anterior, inferior, and lateral STEMI patterns. Make the call to activate the cath lab and manage concurrent therapies in under 10 minutes from door-to-balloon.",
-                    duration: "10 min",
+                    title: "Hand Hygiene",
+                    description: "Perform effective hand hygiene using the correct technique.",
+                    detailDescription: "Practise the WHO 5 Moments for Hand Hygiene and demonstrate proper hand washing and alcohol-based hand rub techniques to reduce healthcare-associated infections. Identify common mistakes and ensure compliance with infection prevention standards.",
+                    duration: "5 min",
                     difficulty: .beginner,
-                    category: "Cardiac",
-                    thumbnailSystemImage: "heart.text.square"
+                    category: "Infection Control",
+                    thumbnailSystemImage: "hands.sparkles.fill"
                 ),
-                Scenario(
-                    title: "Acute Heart Failure",
-                    description: "Manage flash pulmonary oedema in a deteriorating patient.",
-                    detailDescription: "A 72-year-old female presents with acute dyspnoea, diaphoresis, and SpO₂ of 82%. Use non-invasive ventilation, vasodilators, and diuresis in this time-pressured scenario.",
-                    duration: "15 min",
-                    difficulty: .advanced,
-                    category: "Cardiac",
-                    thumbnailSystemImage: "lungs.fill"
-                )
-            ],
-            accentColor: .red
-        ),
 
-        TrainingModule(
-            title: "Trauma & Resuscitation",
-            subtitle: "Haemorrhage control & ATLS",
-            systemImage: "staroflife.fill",
-            scenarios: [
                 Scenario(
-                    title: "Massive Haemorrhage",
-                    description: "Activate the MHP and manage haemorrhagic shock.",
-                    detailDescription: "A polytrauma patient arrives by air retrieval with a suspected pelvic fracture and falling BP. Initiate the massive haemorrhage protocol, request balanced blood products, and coordinate with theatre in this team-based simulation.",
-                    duration: "18 min",
-                    difficulty: .advanced,
-                    category: "Trauma",
-                    thumbnailSystemImage: "cross.case.fill"
-                ),
-                Scenario(
-                    title: "Tension Pneumothorax",
-                    description: "Identify and immediately decompress a tension PTX.",
-                    detailDescription: "Following blunt chest trauma, your patient acutely deteriorates. Absent breath sounds and tracheal deviation — recognise the diagnosis and perform needle decompression before inserting a chest drain.",
+                    title: "PPE Use",
+                    description: "Correctly don and doff personal protective equipment.",
+                    detailDescription: "Learn the proper sequence for putting on and removing gloves, gowns, masks, and eye protection. Prevent self-contamination while managing patients requiring standard, contact, droplet, or airborne precautions.",
                     duration: "8 min",
                     difficulty: .intermediate,
-                    category: "Trauma",
-                    thumbnailSystemImage: "lungs"
+                    category: "Infection Control",
+                    thumbnailSystemImage: "facemask.fill"
+                ),
+
+                Scenario(
+                    title: "Managing Infectious Diseases",
+                    description: "Recognise and manage patients with infectious conditions safely.",
+                    detailDescription: "Assess patients presenting with suspected infectious diseases, implement appropriate isolation precautions, select suitable PPE, and coordinate care while minimising transmission risks to staff and other patients.",
+                    duration: "15 min",
+                    difficulty: .advanced,
+                    category: "Infection Control",
+                    thumbnailSystemImage: "cross.case.fill"
                 )
             ],
-            accentColor: .orange
+            accentColor: .blue
         ),
 
         TrainingModule(
-            title: "Airway Management",
+            title: "Conflict Management",
+            subtitle: "De-escalation, communication & dispute resolution",
+            systemImage: "person.2.fill",
+            scenarios: [
+                Scenario(
+                    title: "Managing Aggression",
+                    description: "Safely assess and de-escalate an aggressive patient.",
+                    detailDescription: "A patient in the emergency department becomes increasingly agitated and verbally aggressive toward staff. Use verbal de-escalation techniques, identify triggers, maintain personal safety, and escalate appropriately when required while preserving patient dignity and therapeutic rapport.",
+                    duration: "12 min",
+                    difficulty: .advanced,
+                    category: "Behavioural Management",
+                    thumbnailSystemImage: "exclamationmark.bubble.fill"
+                ),
+
+                Scenario(
+                    title: "Conflict Resolution",
+                    description: "Resolve workplace conflict through effective communication.",
+                    detailDescription: "Navigate a disagreement between healthcare team members during a busy shift. Practise active listening, identify underlying concerns, manage emotions professionally, and work toward a collaborative resolution that maintains patient safety and team cohesion.",
+                    duration: "10 min",
+                    difficulty: .intermediate,
+                    category: "Communication",
+                    thumbnailSystemImage: "person.2.fill"
+                )
+            ],
+            accentColor: .blue
+        ),
+
+        TrainingModule(
+            title: "Mental Health Awareness",
             subtitle: "RSI, difficult airways & rescue",
-            systemImage: "mouth.fill",
+            systemImage: "brain.filled.head.profile",
             scenarios: [
                 Scenario(
                     title: "Rapid Sequence Intubation",
@@ -207,7 +210,7 @@ enum TrainingData {
         ),
 
         TrainingModule(
-            title: "Paediatric Emergencies",
+            title: "Professional Ethics and Duty of Care",
             subtitle: "Neonates, infants & children",
             systemImage: "figure.child",
             scenarios: [
@@ -221,7 +224,7 @@ enum TrainingData {
                     thumbnailSystemImage: "figure.child.circle"
                 )
             ],
-            accentColor: .purple
+            accentColor: .blue
         )
     ]
 }
