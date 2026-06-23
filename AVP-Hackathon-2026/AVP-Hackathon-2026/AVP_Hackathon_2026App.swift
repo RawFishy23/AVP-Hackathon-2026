@@ -11,16 +11,19 @@ import SwiftUI
 struct AVP_Hackathon_2026App: App {
 
     @State private var appModel = AppModel()
+    @State private var encounterSession = EncounterSession()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(appModel)
+                .environment(encounterSession)
         }
 
         ImmersiveSpace(id: appModel.immersiveSpaceID) {
             ImmersiveView()
                 .environment(appModel)
+                .environment(encounterSession)
                 .onAppear {
                     appModel.immersiveSpaceState = .open
                 }

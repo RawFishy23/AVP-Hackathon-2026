@@ -7,6 +7,8 @@ import SwiftUI
 
 struct DashboardView: View {
     @Environment(AppModel.self) private var appModel
+    @Environment(EncounterSession.self) private var encounterSession
+    @State private var detailPath: [EncounterRoute] = []
 
     var body: some View {
         @Bindable var appModel = appModel
@@ -27,15 +29,46 @@ struct DashboardView: View {
             }
 
         } detail: {
-            // ── Column 3: Scenario preview ─────────────────────────────
-            if let scenario = appModel.selectedScenario {
-                ScenarioPreviewView(scenario: scenario)
-            } else {
-                EmptySelectionView(
-                    systemImage: "play.rectangle",
-                    message: "Select a scenario to preview it."
-                )
+            // ── Column 3: Scenario preview, plus the post-encounter
+            //    Code Black / Results screens pushed on top of it.
+            NavigationStack(path: $detailPath) {
+                Group {
+                    if let scenario = appModel.selectedScenario {
+                        ScenarioPreviewView(scenario: scenario)
+                    } else {
+                        EmptySelectionView(
+                            systemImage: "play.rectangle",
+                            message: "Select a scenario to preview it."
+                        )
+                    }
+                }
+                .navigationDestination(for: EncounterRoute.self) { route in
+                    switch route {
+                    case .codeBlack:
+                        CodeBlackView()
+                    case .results:
+                        ResultsView()
+                    }
+                }
             }
+        }
+        .onAppear {
+            wireEncounterCallbacks()
+        }
+    }
+
+    private func wireEncounterCallbacks() {
+        encounterSession.advanceToCodeBlack = { detailPath.append(.codeBlack) }
+        encounterSession.resetFlow = {
+            detailPath.removeAll()
+            if let scenario = appModel.selectedScenario {
+                appModel.markCompleted(scenario)
+            }
+            appModel.dismissPreview()
+        }
+        encounterSession.retryFlow = {
+            encounterSession.reset()
+            detailPath.removeAll()
         }
     }
 }
@@ -63,4 +96,5 @@ private struct EmptySelectionView: View {
 #Preview(windowStyle: .automatic) {
     DashboardView()
         .environment(AppModel())
+        .environment(EncounterSession())
 }

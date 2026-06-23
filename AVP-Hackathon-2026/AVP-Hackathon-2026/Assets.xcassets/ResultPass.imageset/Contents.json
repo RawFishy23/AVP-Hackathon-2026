@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "result_pass.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -54,6 +54,7 @@ struct Scenario: Identifiable, Hashable {
     let thumbnailSystemImage: String // SF Symbol used as placeholder thumbnail
     let videoName: String?           // Name of video asset in bundle (nil = no video yet)
     var isCompleted: Bool
+    let encounterID: String?         // Identifies a scenario with a built immersive encounter (nil = not implemented yet)
 
     init(
         id: UUID = UUID(),
@@ -65,7 +66,8 @@ struct Scenario: Identifiable, Hashable {
         category: String,
         thumbnailSystemImage: String = "play.rectangle.fill",
         videoName: String? = nil,
-        isCompleted: Bool = false
+        isCompleted: Bool = false,
+        encounterID: String? = nil
     ) {
         self.id = id
         self.title = title
@@ -77,7 +79,14 @@ struct Scenario: Identifiable, Hashable {
         self.thumbnailSystemImage = thumbnailSystemImage
         self.videoName = videoName
         self.isCompleted = isCompleted
+        self.encounterID = encounterID
     }
+}
+
+// MARK: - Encounter IDs
+
+enum EncounterID {
+    static let frontDeskPrivacy = "frontDeskPrivacy"
 }
 
 // MARK: - Module
@@ -222,6 +231,25 @@ enum TrainingData {
                 )
             ],
             accentColor: .purple
+        ),
+
+        TrainingModule(
+            title: "Front Desk & Security",
+            subtitle: "Patient privacy & Code Black",
+            systemImage: "shield.lefthalf.filled",
+            scenarios: [
+                Scenario(
+                    title: "Patient Privacy at the Front Desk",
+                    description: "A visitor presses you for a patient's room — then escalates.",
+                    detailDescription: "A visitor approaches your desk asking for a patient's room number. Protect patient confidentiality while staying calm and professional — even if the visitor's behaviour escalates and you need to call a Code Black.",
+                    duration: "5 min",
+                    difficulty: .beginner,
+                    category: "Patient Privacy",
+                    thumbnailSystemImage: "person.fill.questionmark",
+                    encounterID: EncounterID.frontDeskPrivacy
+                )
+            ],
+            accentColor: .blue
         )
     ]
 }

@@ -97,6 +97,8 @@ struct ScenarioPreviewView: View {
 
 private struct PlayButton: View {
     @Environment(AppModel.self) private var appModel
+    @Environment(EncounterSession.self) private var encounterSession
+    @Environment(\.openImmersiveSpace) private var openImmersiveSpace
     let scenario: Scenario
     @State private var isConfirming = false
 
@@ -115,8 +117,13 @@ private struct PlayButton: View {
         // ── Replace this alert with your actual scenario launch logic ──
         .alert("Launch Scenario", isPresented: $isConfirming) {
             Button("Begin") {
-                appModel.markCompleted(scenario)
-                // TODO: trigger immersive space or scenario engine here
+                if scenario.encounterID == EncounterID.frontDeskPrivacy {
+                    encounterSession.reset()
+                    Task { _ = try? await openImmersiveSpace(id: appModel.immersiveSpaceID) }
+                } else {
+                    // No built encounter yet for this scenario.
+                    appModel.markCompleted(scenario)
+                }
             }
             Button("Cancel", role: .cancel) {}
         } message: {
@@ -159,5 +166,6 @@ private struct VideoThumbnailView: View {
     NavigationStack {
         ScenarioPreviewView(scenario: TrainingData.all[0].scenarios[0])
             .environment(AppModel())
+            .environment(EncounterSession())
     }
 }
